@@ -6,6 +6,7 @@ import { HeaderComponent } from '../../layout/header/header.component';
 import { FooterComponent } from '../../layout/footer/footer.component';
 import { SidebarComponent } from '../../layout/sidebar/sidebar.component';
 import { DataService } from '../../services/data.service';
+import { FavoritesService } from '../../services/favorites.service';
 import { Product } from '../../models/product.model';
 import { Category } from '../../models/category.model';
 import { Seller } from '../../models/seller.model';
@@ -32,10 +33,16 @@ export class HomeComponent implements OnInit {
   recommendedProducts: Product[] = [];
   topSellers: Seller[] = [];
   
+  // Favori ürün ID'leri
+  favoriteProductIds: number[] = [];
+  
   // Aktif slide indeksi
   activeSlideIndex = 0;
   
-  constructor(private dataService: DataService) {}
+  constructor(
+    private dataService: DataService,
+    private favoritesService: FavoritesService
+  ) {}
   
   ngOnInit(): void {
     // Verileri servisten yükleme
@@ -43,6 +50,11 @@ export class HomeComponent implements OnInit {
     this.loadCategories();
     this.loadRecommendedProducts();
     this.loadTopSellers();
+    
+    // Favori ürün ID'lerini yükle
+    this.favoritesService.getFavoriteIds().subscribe(ids => {
+      this.favoriteProductIds = ids;
+    });
     
     // Slider otomatik geçiş için zamanlayıcı
     setInterval(() => {
@@ -98,5 +110,19 @@ export class HomeComponent implements OnInit {
     
     // Kullanıcıya bildirim gösterme
     alert(`${product.name} sepete eklendi!`);
+  }
+  
+  // Favorilere ekleme/çıkarma metodu
+  toggleFavorite(product: Product): void {
+    if (this.isFavorite(product.id)) {
+      this.favoritesService.removeFromFavorites(product.id);
+    } else {
+      this.favoritesService.addToFavorites(product);
+    }
+  }
+  
+  // Ürün favorilerde mi kontrol et
+  isFavorite(productId: number): boolean {
+    return this.favoriteProductIds.includes(productId);
   }
 }

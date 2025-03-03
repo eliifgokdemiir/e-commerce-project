@@ -464,32 +464,45 @@ $border-color: #e0e0e0;
     .seller-rating {
       display: flex;
       align-items: center;
-      gap: 5px;
-      margin-bottom: 15px;
+      margin-bottom: 5px;
       
       .stars {
-        display: flex;
+        color: #ffc107;
+        margin-right: 5px;
         
-        mat-icon {
-          font-size: 18px;
-          width: 18px;
-          height: 18px;
-          line-height: 18px;
-          color: #e0e0e0;
-          
+        .fa-star {
           &.filled {
-            color: #ffb800;
+            color: #ffc107;
           }
           
           &.half-filled {
-            color: #ffb800;
+            position: relative;
+            
+            &:before {
+              content: '\f005';
+              position: absolute;
+              left: 0;
+              top: 0;
+              width: 50%;
+              overflow: hidden;
+              color: #ffc107;
+            }
+            
+            &:after {
+              content: '\f005';
+              color: #e0e0e0;
+            }
+          }
+          
+          &:not(.filled):not(.half-filled) {
+            color: #e0e0e0;
           }
         }
       }
       
       .rating-value {
         font-size: 14px;
-        color: #666;
+        color: #777;
       }
     }
     
@@ -613,35 +626,9 @@ $border-color: #e0e0e0;
   }
 }
 
-// Yıldız derecelendirme stilleri
-.product-rating, .seller-rating {
-  display: flex;
-  align-items: center;
-  gap: 5px;
-  margin-bottom: 15px;
-  
-  .stars {
-    display: flex;
-    
-    mat-icon {
-      font-size: 18px;
-      width: 18px;
-      height: 18px;
-      line-height: 18px;
-      color: #e0e0e0;
-      
-      &.filled {
-        color: #ffb800;
-      }
-      
-      &.half-filled {
-        color: #ffb800;
-      }
-    }
-  }
-  
-  .rating-value {
-    font-size: 14px;
-    color: #666;
+// Favori butonu için aktif durum
+.btn-favorite {
+  .favorite-active {
+    color: #ff0000 !important; // Kırmızı renk
   }
 }

@@ -1,3 +1,5 @@
+<app-sidebar></app-sidebar>
+
 <div class="home-container">
   <!-- Slider Bölümü -->
   <section class="slider-section">
@@ -52,8 +54,8 @@
         <div class="product-image">
           <img [src]="product.imageUrl" [alt]="product.name">
           <div class="product-actions">
-            <button class="btn-favorite">
-              <mat-icon>favorite</mat-icon>
+            <button class="btn-favorite" (click)="toggleFavorite(product)">
+              <mat-icon [class.favorite-active]="isFavorite(product.id)">favorite</mat-icon>
             </button>
             <button class="btn-cart" (click)="addToCart(product)">
               <mat-icon>shopping_cart</mat-icon>
@@ -64,18 +66,20 @@
         <div class="product-info">
           <h3>{{ product.name }}</h3>
           <div class="product-price">
-            <span class="current-price">{{ product.price - (product.price * product.discount / 100) | currency:'₺':'symbol':'1.2-2' }}</span>
+            <span class="current-price">{{ product.price - (product.price * product.discount / 100) | currency:'TRY':'symbol':'1.2-2' }}</span>
             <span class="original-price" *ngIf="product.discount > 0">{{ product.price | currency:'TRY':'symbol':'1.2-2' }}</span>
           </div>
           <div class="product-rating">
             <span class="stars">
-              <i class="fas fa-star" *ngFor="let star of [1,2,3,4,5]" 
-                 [class.filled]="star <= product.rating"
-                 [class.half-filled]="star - 0.5 <= product.rating && star > product.rating"></i>
+              <mat-icon *ngFor="let star of [1,2,3,4,5]" 
+                        [class.filled]="star <= product.rating"
+                        [class.half-filled]="star - 0.5 <= product.rating && star > product.rating">
+                {{ star <= product.rating ? 'star' : (star - 0.5 <= product.rating ? 'star_half' : 'star_border') }}
+              </mat-icon>
             </span>
             <span class="rating-value">{{ product.rating }}</span>
           </div>
-       
+         
         </div>
       </div>
     </div>

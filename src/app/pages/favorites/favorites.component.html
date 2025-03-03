@@ -1,1 +1,53 @@
-<p>favorites works!</p>
+
+<div class="favorites-container">
+  <div class="section-title">
+    <h2>Favori Ürünlerim</h2>
+  </div>
+  
+  <div *ngIf="favorites.length === 0" class="empty-favorites">
+    <mat-icon>favorite_border</mat-icon>
+    <h3>Favori ürününüz bulunmamaktadır</h3>
+    <p>Beğendiğiniz ürünleri favorilere ekleyerek daha sonra kolayca bulabilirsiniz.</p>
+    <a routerLink="/" class="btn-primary">Alışverişe Başla</a>
+  </div>
+  
+  <div *ngIf="favorites.length > 0" class="products-container">
+    <div class="product-card" *ngFor="let product of favorites">
+      <div class="product-image">
+        <img [src]="product.imageUrl" [alt]="product.name">
+        <div class="product-actions">
+          <button class="btn-favorite favorite-active" (click)="removeFromFavorites(product.id)">
+            <mat-icon>favorite</mat-icon>
+          </button>
+          <button class="btn-cart" (click)="addToCart(product)">
+            <mat-icon>shopping_cart</mat-icon>
+          </button>
+        </div>
+        <span class="discount-badge" *ngIf="product.discount > 0">-{{ product.discount }}%</span>
+      </div>
+      <div class="product-info">
+        <h3>{{ product.name }}</h3>
+        <div class="product-price">
+          <span class="current-price">{{ product.price - (product.price * product.discount / 100) | currency:'TRY':'symbol':'1.2-2' }}</span>
+          <span class="original-price" *ngIf="product.discount > 0">{{ product.price | currency:'TRY':'symbol':'1.2-2' }}</span>
+        </div>
+        <div class="product-rating">
+          <span class="stars">
+            <mat-icon *ngFor="let star of [1,2,3,4,5]" 
+                      [class.filled]="star <= product.rating"
+                      [class.half-filled]="star - 0.5 <= product.rating && star > product.rating">
+              {{ star <= product.rating ? 'star' : (star - 0.5 <= product.rating ? 'star_half' : 'star_border') }}
+            </mat-icon>
+          </span>
+          <span class="rating-value">{{ product.rating }}</span>
+        </div>
+        <!-- Sepete Ekle Butonu -->
+        <button class="add-to-cart-btn" (click)="addToCart(product)">
+          <mat-icon>shopping_cart</mat-icon> Sepete Ekle
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<app-footer></app-footer>
