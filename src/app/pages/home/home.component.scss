@@ -349,45 +349,32 @@ $border-color: #e0e0e0;
     .product-rating {
       display: flex;
       align-items: center;
+      gap: 5px;
       margin-bottom: 15px;
       
       .stars {
-        color: #ffc107;
-        margin-right: 5px;
+        display: flex;
         
-        .fa-star {
+        mat-icon {
+          font-size: 18px;
+          width: 18px;
+          height: 18px;
+          line-height: 18px;
+          color: #e0e0e0;
+          
           &.filled {
-            color: #ffc107;
+            color: #ffb800;
           }
           
           &.half-filled {
-            position: relative;
-            
-            &:before {
-              content: '\f005';
-              position: absolute;
-              left: 0;
-              top: 0;
-              width: 50%;
-              overflow: hidden;
-              color: #ffc107;
-            }
-            
-            &:after {
-              content: '\f005';
-              color: #e0e0e0;
-            }
-          }
-          
-          &:not(.filled):not(.half-filled) {
-            color: #e0e0e0;
+            color: #ffb800;
           }
         }
       }
       
       .rating-value {
         font-size: 14px;
-        color: #777;
+        color: #666;
       }
     }
     
@@ -477,45 +464,32 @@ $border-color: #e0e0e0;
     .seller-rating {
       display: flex;
       align-items: center;
-      margin-bottom: 5px;
+      gap: 5px;
+      margin-bottom: 15px;
       
       .stars {
-        color: #ffc107;
-        margin-right: 5px;
+        display: flex;
         
-        .fa-star {
+        mat-icon {
+          font-size: 18px;
+          width: 18px;
+          height: 18px;
+          line-height: 18px;
+          color: #e0e0e0;
+          
           &.filled {
-            color: #ffc107;
+            color: #ffb800;
           }
           
           &.half-filled {
-            position: relative;
-            
-            &:before {
-              content: '\f005';
-              position: absolute;
-              left: 0;
-              top: 0;
-              width: 50%;
-              overflow: hidden;
-              color: #ffc107;
-            }
-            
-            &:after {
-              content: '\f005';
-              color: #e0e0e0;
-            }
-          }
-          
-          &:not(.filled):not(.half-filled) {
-            color: #e0e0e0;
+            color: #ffb800;
           }
         }
       }
       
       .rating-value {
         font-size: 14px;
-        color: #777;
+        color: #666;
       }
     }
     
@@ -636,5 +610,38 @@ $border-color: #e0e0e0;
   i {
     font-size: 16px;
     margin-right: 5px;
+  }
+}
+
+// Yıldız derecelendirme stilleri
+.product-rating, .seller-rating {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin-bottom: 15px;
+  
+  .stars {
+    display: flex;
+    
+    mat-icon {
+      font-size: 18px;
+      width: 18px;
+      height: 18px;
+      line-height: 18px;
+      color: #e0e0e0;
+      
+      &.filled {
+        color: #ffb800;
+      }
+      
+      &.half-filled {
+        color: #ffb800;
+      }
+    }
+  }
+  
+  .rating-value {
+    font-size: 14px;
+    color: #666;
   }
 }
