@@ -1,0 +1,110 @@
+
+<div class="home-container">
+  <!-- Slider Bölümü -->
+  <section class="slider-section">
+    <div class="slider-container">
+      <div class="slider">
+        <div class="slide" *ngFor="let slide of sliderItems; let i = index" [class.active]="i === activeSlideIndex">
+          <img [src]="slide.imageUrl" [alt]="slide.title">
+          <div class="slide-content">
+            <h2>{{ slide.title }}</h2>
+            <p>{{ slide.description }}</p>
+            <a [routerLink]="slide.link" class="btn btn-primary">Keşfet</a>
+          </div>
+        </div>
+      </div>
+      <button class="slider-prev" (click)="prevSlide()">&#10094;</button>
+      <button class="slider-next" (click)="nextSlide()">&#10095;</button>
+      <div class="slider-dots">
+        <span *ngFor="let slide of sliderItems; let i = index" 
+              [class.active]="i === activeSlideIndex"
+              (click)="goToSlide(i)"></span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Kategoriler Bölümü -->
+  <section class="categories-section">
+    <div class="section-title">
+      <h2>Kategoriler</h2>
+    </div>
+    <div class="categories-container">
+      <div class="category-card" *ngFor="let category of categories">
+        <a [routerLink]="['/category', category.id]">
+          <div class="category-image">
+            <img [src]="category.imageUrl" [alt]="category.name">
+          </div>
+          <div class="category-info">
+            <h3>{{ category.name }}</h3>
+            <span>{{ category.productCount }} Ürün</span>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Önerilen Ürünler Bölümü -->
+  <section class="recommended-products-section">
+    <div class="section-title">
+      <h2>Önerilen Ürünler</h2>
+    </div>
+    <div class="products-container">
+      <div class="product-card" *ngFor="let product of recommendedProducts">
+        <div class="product-image">
+          <img [src]="product.imageUrl" [alt]="product.name">
+          <div class="product-actions">
+            <button class="btn-favorite">
+              <i class="fa fa-heart"></i>
+            </button>
+            <button class="btn-cart">
+              <i class="fa fa-shopping-cart"></i>
+            </button>
+          </div>
+          <span class="discount-badge" *ngIf="product.discount > 0">-{{ product.discount }}%</span>
+        </div>
+        <div class="product-info">
+          <h3>{{ product.name }}</h3>
+          <div class="product-price">
+            <span class="current-price">{{ product.price - (product.price * product.discount / 100) | currency:'TRY':'symbol':'1.2-2' }}</span>
+            <span class="original-price" *ngIf="product.discount > 0">{{ product.price | currency:'TRY':'symbol':'1.2-2' }}</span>
+          </div>
+          <div class="product-rating">
+            <span class="stars">
+              <i class="fa fa-star" *ngFor="let star of [1,2,3,4,5]" 
+                 [class.filled]="star <= product.rating"
+                 [class.half-filled]="star - 0.5 <= product.rating && star > product.rating"></i>
+            </span>
+            <span class="rating-value">{{ product.rating }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Başarılı Satıcılar Bölümü -->
+  <section class="top-sellers-section">
+    <div class="section-title">
+      <h2>Başarılı Satıcılar</h2>
+    </div>
+    <div class="sellers-container">
+      <div class="seller-card" *ngFor="let seller of topSellers">
+        <div class="seller-image">
+          <img [src]="seller.imageUrl" [alt]="seller.name">
+        </div>
+        <div class="seller-info">
+          <h3>{{ seller.name }}</h3>
+          <div class="seller-rating">
+            <span class="stars">
+              <i class="fa fa-star" *ngFor="let star of [1,2,3,4,5]" 
+                 [class.filled]="star <= seller.rating"
+                 [class.half-filled]="star - 0.5 <= seller.rating && star > seller.rating"></i>
+            </span>
+            <span class="rating-value">{{ seller.rating }}</span>
+          </div>
+          <p>{{ seller.productCount }} Ürün</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+

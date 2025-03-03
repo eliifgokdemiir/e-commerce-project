@@ -1,0 +1,217 @@
+// Ana renkler
+$primary-color: #ff6600;
+$secondary-color: #ff9933;
+$accent-color: #ffcc99;
+$text-color: #333333;
+$light-color: #ffffff;
+$dark-color: #222222;
+$gray-color: #f5f5f5;
+$border-color: #e0e0e0;
+$footer-bg: #2c2c2c;
+$footer-text: #cccccc;
+
+.site-footer {
+  background-color: $footer-bg;
+  color: $footer-text;
+  padding: 60px 0 30px;
+  margin-top: 50px;
+}
+
+.footer-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.footer-top {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 30px;
+  margin-bottom: 40px;
+}
+
+.footer-column {
+  h3 {
+    color: $light-color;
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 20px;
+    position: relative;
+    padding-bottom: 10px;
+    
+    &:after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 40px;
+      height: 2px;
+      background-color: $primary-color;
+    }
+  }
+  
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    
+    li {
+      margin-bottom: 10px;
+      
+      a {
+        color: $footer-text;
+        text-decoration: none;
+        transition: all 0.3s ease;
+        display: inline-block;
+        
+        &:hover {
+          color: $primary-color;
+          transform: translateX(5px);
+        }
+      }
+    }
+  }
+  
+  .social-links {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 20px;
+    
+    .social-link {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 36px;
+      height: 36px;
+      background-color: rgba($light-color, 0.1);
+      border-radius: 50%;
+      color: $light-color;
+      transition: all 0.3s ease;
+      
+      &:hover {
+        background-color: $primary-color;
+        transform: translateY(-3px);
+      }
+      
+      i {
+        font-size: 16px;
+      }
+    }
+  }
+  
+  .newsletter {
+    h4 {
+      color: $light-color;
+      font-size: 16px;
+      margin-bottom: 15px;
+    }
+    
+    .newsletter-form {
+      display: flex;
+      
+      input {
+        flex: 1;
+        padding: 10px 15px;
+        border: 1px solid rgba($light-color, 0.2);
+        background-color: rgba($light-color, 0.05);
+        color: $light-color;
+        border-radius: 4px 0 0 4px;
+        
+        &:focus {
+          outline: none;
+          border-color: $primary-color;
+        }
+        
+        &::placeholder {
+          color: rgba($light-color, 0.5);
+        }
+      }
+      
+      button {
+        background-color: $primary-color;
+        color: $light-color;
+        border: none;
+        padding: 0 15px;
+        border-radius: 0 4px 4px 0;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        
+        &:hover {
+          background-color: darken($primary-color, 10%);
+        }
+      }
+    }
+  }
+}
+
+.footer-bottom {
+  border-top: 1px solid rgba($light-color, 0.1);
+  padding-top: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  
+  .copyright {
+    font-size: 14px;
+    margin-bottom: 10px;
+  }
+  
+  .payment-methods {
+    img {
+      height: 24px;
+    }
+  }
+}
+
+// Responsive tasarım
+@media (max-width: 768px) {
+  .site-footer {
+    padding: 40px 0 20px;
+  }
+  
+  .footer-top {
+    gap: 20px;
+  }
+  
+  .footer-column {
+    h3 {
+      font-size: 16px;
+      margin-bottom: 15px;
+    }
+  }
+  
+  .footer-bottom {
+    flex-direction: column;
+    text-align: center;
+    
+    .copyright, .payment-methods {
+      width: 100%;
+      margin-bottom: 10px;
+    }
+  }
+}
+
+@media (max-width: 576px) {
+  .footer-top {
+    grid-template-columns: 1fr;
+  }
+  
+  .footer-column {
+    text-align: center;
+    
+    h3:after {
+      left: 50%;
+      transform: translateX(-50%);
+    }
+    
+    .social-links {
+      justify-content: center;
+    }
+    
+    .newsletter-form {
+      max-width: 300px;
+      margin: 0 auto;
+    }
+  }
+}

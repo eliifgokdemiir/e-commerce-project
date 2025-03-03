@@ -1,0 +1,7 @@
+<div class="sidebar">
+  <ul class="sidebar-menu">
+    <li *ngFor="let category of categories">
+      <a [routerLink]="category.url" routerLinkActive="active">{{ category.name }}</a>
+    </li>
+  </ul>
+</div>
