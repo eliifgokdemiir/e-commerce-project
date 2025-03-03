@@ -1,39 +1,40 @@
 <header class="site-header">
-  <div class="header-container">
-    <div class="logo">
-      <a routerLink="/">
-        <img src="assets/images/logo.png" alt="E-Ticaret Logo">
-        <span>OrangeMart</span>
-      </a>
+    <div class="header-container">
+      <div class="logo">
+        <a routerLink="/">
+          <img src="assets/img/logo.png" alt="E-Ticaret Logo">
+         
+        </a>
+      </div>
+      <div class="search-bar">
+        <input type="text" placeholder="Ürün, kategori veya marka ara...">
+        <button class="search-button">
+          <mat-icon>search</mat-icon>
+        </button>
+      </div>
+      <nav class="header-nav">
+        <ul>
+          <li>
+            <a routerLink="/favorites">
+              <mat-icon>favorite</mat-icon>
+            
+            </a>
+          </li>
+          <li>
+            <a routerLink="/cart">
+              <mat-icon>shopping_cart</mat-icon>
+           
+              <span class="cart-count" *ngIf="cartItemCount > 0">{{ cartItemCount }}</span>
+            </a>
+          </li>
+          <li>
+            <a routerLink="/profile">
+              <mat-icon>person</mat-icon>
+            
+            </a>
+          </li>
+        </ul>
+      </nav>
     </div>
-    <div class="search-bar">
-      <input type="text" placeholder="Ürün, kategori veya marka ara...">
-      <button class="search-button">
-        <i class="fa fa-search"></i>
-      </button>
-    </div>
-    <nav class="header-nav">
-      <ul>
-        <li>
-          <a routerLink="/favorites">
-            <i class="fa fa-heart"></i>
-            <span>Favoriler</span>
-          </a>
-        </li>
-        <li>
-          <a routerLink="/cart">
-            <i class="fa fa-shopping-cart"></i>
-            <span>Sepetim</span>
-            <span class="cart-count" *ngIf="cartItemCount > 0">{{ cartItemCount }}</span>
-          </a>
-        </li>
-        <li>
-          <a routerLink="/profile">
-            <i class="fa fa-user"></i>
-            <span>Hesabım</span>
-          </a>
-        </li>
-      </ul>
-    </nav>
-  </div>
-</header>
+  </header>
+  
